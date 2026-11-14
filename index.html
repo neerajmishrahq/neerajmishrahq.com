@@ -211,6 +211,8 @@
     .projects.grid { gap: 16px; }
     @media (min-width: 1000px) { .projects.grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
     .card.feature .shots { margin-bottom: 0; }
+    .highlights { margin: 0 0 12px; padding-left: 18px; color: var(--muted); font-size: .95rem; }
+    .highlights li { margin: 3px 0; }
 
     /* Tablet and up */
     @media (min-width: 760px) {
@@ -228,13 +230,13 @@
     }
     /* Tablets: bigger screenshots under the text */
     @media (min-width: 600px) {
-      .card.feature .shots img { width: 160px; }
+      .card.feature .shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 540px; overflow: visible; margin-top: 14px; }
+      .card.feature .shots img { width: 100%; }
     }
     /* Wide laptops: Upgrade text beside its screenshots */
     @media (min-width: 1100px) {
-      .card.feature { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: center; }
-      .card.feature .shots { overflow: visible; margin: 0; }
-      .card.feature .shots img { width: 150px; }
+      .card.feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 440px); gap: 36px; align-items: center; }
+      .card.feature .shots { max-width: none; margin: 0; }
     }
     /* Large monitors: scale up a little and use more width */
     @media (min-width: 1600px) {
@@ -337,6 +339,12 @@
             <span class="tag">Personal project</span><span class="tag muted">Android app live</span>
             <h3>Upgrade: a goals and habits app</h3>
             <p>A self-improvement app I designed and built end to end. You set a goal with a reason and a measurable target, get daily actions, review missed days, and track progress against your plan with ranks and badges.</p>
+            <ul class="highlights">
+              <li>Android app built with Expo, live on a FastAPI + PostgreSQL backend</li>
+              <li>Secure sign-in with JWT access and refresh tokens, plus rate limiting</li>
+              <li>API-first: the app's client is generated from an OpenAPI contract</li>
+              <li>246 automated UI tests across phone sizes, tablet and dark mode</li>
+            </ul>
             <p class="stack">Expo / React Native · TypeScript · FastAPI · PostgreSQL · Alembic · Docker · JWT auth · Render · Neon</p>
             </div>
             <div class="shots">
