@@ -143,7 +143,7 @@
     }
     a { color: var(--accent); }
     a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-    .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); }
 
     .topbar { display: flex; justify-content: flex-end; padding-top: 16px; }
     .theme-btn {
@@ -187,7 +187,7 @@
     section p { margin: 0 0 12px; }
 
     .skills { display: grid; gap: 14px; }
-    .skill-row { display: grid; grid-template-columns: 130px 1fr; gap: 12px; align-items: start; }
+    .skill-row { display: grid; grid-template-columns: 150px 1fr; gap: 12px; align-items: start; }
     .skill-row h3 { font-size: .95rem; margin: 4px 0 0; }
     .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
     .chips li { padding: 4px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--text); font-size: .9rem; }
@@ -198,6 +198,7 @@
       background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow);
     }
     .projects { display: grid; gap: 12px; }
+    .projects > .card { min-width: 0; }
     .card h3 { margin: 0 0 6px; font-size: 1.05rem; line-height: 1.35; }
     .card p { color: var(--muted); margin: 0 0 10px; }
     .card .stack { font-size: .85rem; color: var(--muted); margin: 0; }
@@ -205,7 +206,28 @@
     .tag.muted { background: var(--border); color: var(--muted); }
     .shots { display: flex; gap: 10px; margin: 4px 0 12px; overflow-x: auto; padding-bottom: 4px; }
     .shots img { width: 132px; height: auto; flex: none; border-radius: 12px; border: 1px solid var(--border); background: var(--border); }
-    .section-note { color: var(--muted); font-size: .9rem; margin: -6px 0 14px; }
+    .section-note { color: var(--muted); font-size: .9rem; margin: -6px 0 14px; max-width: 75ch; }
+    #about p { max-width: 75ch; font-size: 1.05rem; }
+    .projects.grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+    .card.feature .shots { margin-bottom: 0; }
+
+    /* Tablet and up */
+    @media (min-width: 760px) {
+      section { padding: 40px 0; }
+      .card { padding: 22px 24px; }
+    }
+    @media (min-width: 1024px) {
+      .skills { grid-template-columns: 1fr 1fr; column-gap: 40px; row-gap: 18px; }
+    }
+    /* Laptop and up */
+    @media (min-width: 900px) {
+      header.hero { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 40px; text-align: left; padding: 24px 0 48px; }
+      header.hero .avatar { width: 200px; height: 200px; margin: 0; }
+      header.hero .cta { justify-content: flex-start; }
+      .card.feature { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: center; }
+      .card.feature .shots { overflow: visible; }
+      .card.feature .shots img { width: 150px; }
+    }
 
     .links { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; list-style: none; margin: 0; padding: 0; }
     .links a {
@@ -253,6 +275,7 @@
         <img class="avatar" src="/assets/neeraj-mishra-320.jpg" srcset="/assets/neeraj-mishra-320.jpg 320w, /assets/neeraj-mishra-640.jpg 640w" sizes="168px"
              width="168" height="168" alt="Neeraj Mishra, Senior Software Developer, in a black blazer and white shirt" fetchpriority="high">
       </picture>
+      <div class="hero-text">
       <h1>Neeraj Mishra</h1>
       <p class="handle">@neerajmishrahq</p>
       <p class="role">Senior Software Developer @ Austere Systems</p>
@@ -261,6 +284,7 @@
         <a class="btn primary" href="https://www.linkedin.com/in/neerajmishrahq" rel="me noopener"><svg aria-hidden="true" fill="currentColor"><use href="#i-linkedin"/></svg>Connect on LinkedIn</a>
         <a class="btn" href="https://github.com/neerajmishrahq" rel="me noopener"><svg aria-hidden="true" fill="currentColor"><use href="#i-github"/></svg>GitHub</a>
         <a class="btn" href="mailto:hello@neerajmishrahq.com"><svg aria-hidden="true"><use href="#i-mail"/></svg>Email</a>
+      </div>
       </div>
     </header>
 
@@ -284,22 +308,18 @@
       <section id="projects" aria-labelledby="projects-h">
         <h2 id="projects-h">Projects</h2>
         <div class="projects">
-          <article class="card">
+          <article class="card feature">
+            <div class="feature-text">
             <span class="tag">Personal project</span><span class="tag muted">Android app live</span>
             <h3>Upgrade: a goals and habits app</h3>
             <p>A self-improvement app I designed and built end to end. You set a goal with a reason and a measurable target, get daily actions, review missed days, and track progress against your plan with ranks and badges.</p>
+            <p class="stack">Expo / React Native · TypeScript · FastAPI · PostgreSQL · Alembic · Docker · JWT auth · Render · Neon</p>
+            </div>
             <div class="shots">
               <img src="/assets/upgrade-today.webp" width="132" height="286" loading="lazy" alt="Upgrade app Today screen with daily actions grouped by goal">
               <img src="/assets/upgrade-goal.webp" width="132" height="286" loading="lazy" alt="Upgrade app goal screen with a progress chart against the plan">
               <img src="/assets/upgrade-progress.webp" width="132" height="286" loading="lazy" alt="Upgrade app Progress screen showing three goals and their charts">
             </div>
-            <p class="stack">Expo / React Native · TypeScript · FastAPI · PostgreSQL · Alembic · Docker · JWT auth · Render · Neon</p>
-          </article>
-          <article class="card">
-            <span class="tag">In progress</span><span class="tag muted">Team of 3</span>
-            <h3>DhanKhoj: helping families recover unclaimed money</h3>
-            <p>An AI agent idea for Indian families whose money is stuck in provident fund accounts, old shares, deposits and insurance. It will read their papers, trace old share certificates to today's companies, flag mismatches that cause claim rejections, and prepare the forms. Submitted to a startup buildathon; the build has not started yet.</p>
-            <p class="stack">Planned: Gemini API · Gemini Live · Google Cloud Run · Firebase · React</p>
           </article>
         </div>
       </section>
@@ -307,7 +327,7 @@
       <section id="work" aria-labelledby="work-h">
         <h2 id="work-h">Work at Austere Systems Limited</h2>
         <p class="section-note">Projects I work on as a Senior Software Developer at Austere Systems Limited, described at a high level. The software belongs to the company and its clients.</p>
-        <div class="projects">
+        <div class="projects grid">
           <article class="card">
             <h3>HRPMS: Haryana Rural Project Management System</h3>
             <p>A full-stack government platform for end-to-end rural project management, with multi-level role-based workflows (CEO-ZP, BDPO, JE, SDO) covering feasibility, site verification, approvals, estimates and technical sanction. It includes e-Sign/DSC, geo-tagged photos, financial tracking and MIS reporting. I lead and mentor the project team.</p>
