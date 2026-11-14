@@ -207,7 +207,15 @@
     .shots { display: flex; gap: 10px; margin: 4px 0 12px; overflow-x: auto; padding-bottom: 4px; }
     .shots img { width: 132px; height: auto; flex: none; border-radius: 12px; border: 1px solid var(--border); background: var(--border); }
     .section-note { color: var(--muted); font-size: .9rem; margin: -6px 0 14px; }
-    #about p { max-width: 75ch; font-size: 1.05rem; }
+    #about p { font-size: 1.05rem; margin: 0; }
+    @media (min-width: 900px) { #about p { font-size: 1.12rem; line-height: 1.75; } }
+    .about-grid { display: grid; gap: 20px; }
+    .facts { margin: 0; padding: 6px 20px; border-radius: 14px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow); }
+    .facts div { display: grid; grid-template-columns: 96px 1fr; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+    .facts div:last-child { border-bottom: 0; }
+    .facts dt { color: var(--muted); font-size: .85rem; padding-top: 1px; }
+    .facts dd { margin: 0; font-weight: 500; font-size: .95rem; }
+    @media (min-width: 900px) { .about-grid { grid-template-columns: minmax(0, 1fr) 360px; gap: 48px; align-items: start; } }
     .projects.grid { gap: 16px; }
     @media (min-width: 1000px) { .projects.grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
     .card.feature .shots { margin-bottom: 0; }
@@ -317,7 +325,15 @@
     <main>
       <section id="about" aria-labelledby="about-h">
         <h2 id="about-h">About</h2>
-        <p>I'm a Senior Software Developer at Austere Systems with 2+ years of experience building full-stack, AI-enabled government platforms. I work across the stack, from React.js front ends to Node.js and Python/FastAPI services on PostgreSQL, and I build AI document pipelines with OCR, RAG and transformer embeddings. I deploy on AWS with Docker and CI/CD, and I also mentor developers and run code reviews.</p>
+        <div class="about-grid">
+          <p>I'm a Senior Software Developer at Austere Systems with 2+ years of experience building full-stack, AI-enabled government platforms. I work across the stack, from React.js front ends to Node.js and Python/FastAPI services on PostgreSQL, and I build AI document pipelines with OCR, RAG and transformer embeddings. I deploy on AWS with Docker and CI/CD, and I also mentor developers and run code reviews.</p>
+          <dl class="facts" aria-label="At a glance">
+            <div><dt>Experience</dt><dd>2+ years</dd></div>
+            <div><dt>Focus</dt><dd>Full Stack · GenAI · AWS</dd></div>
+            <div><dt>Location</dt><dd>Haryana, India</dd></div>
+            <div><dt>Education</dt><dd>B.Tech CSE, GGSIPU</dd></div>
+          </dl>
+        </div>
       </section>
 
       <section id="skills" aria-labelledby="skills-h">
